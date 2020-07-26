@@ -1,0 +1,35 @@
+---
+# App specific
+dp3t:
+  ibcovid:
+    auth:
+      private-key: "classpath:/cert/private.key"
+      public-key: "classpath:/cert/public.key"
+      # JWT expiration in minutes
+      jwt-time-to-live: 60
+
+spring:
+  main:
+    banner-mode: off
+  profiles:
+    active: @activeSpringProfiles@
+  jpa:
+    # Hibernate
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    open-in-view: false
+
+  # Database migration
+  flyway:
+    enabled: @enableDBMigration@
+    baseline-on-migrate: true
+    table: "flyway_history_auth"
+    locations: "classpath:db/migration/@databaseDialect@"
+
+logging:
+  config: "classpath:log4j2-@activeEnvironment@.yml"

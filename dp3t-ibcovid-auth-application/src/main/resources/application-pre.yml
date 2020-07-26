@@ -1,0 +1,29 @@
+---
+# App specific
+dp3t:
+  ibcovid:
+    auth:
+      # JWT expiration in minutes
+      jwt-time-to-live: 60
+
+# Server settings
+server:
+  port: 10103
+
+spring:
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  # Database
+  datasource:
+    url: jdbc:mariadb://mydev.plexus.local/dpppt_ib
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: "jorge.garciamartinez"
+
+# Logging
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.SQL.type.descriptor.sql: TRACE
+    es.caib.dp3t.ibcovid: DEBUG
